@@ -1,3 +1,3 @@
 # Learning-Java
 ## Introduction 
-A Repo showing my journey of learning Java 
+A Repo showcasing my journey in learning Java 
