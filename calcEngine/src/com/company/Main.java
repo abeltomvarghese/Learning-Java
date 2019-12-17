@@ -14,6 +14,17 @@ public class Main {
             System.out.println("result = " + eachEquation.getResults());
         }
 
+        double leftDouble = 9.0d;
+        double rightDouble = 40d;
+
+        int leftInt = 9;
+        int rightInt = 4;
+        MathEquation equationOverload = new MathEquation('d');
+
+        equationOverload.execute(leftDouble, rightDouble);
+        
+        equationOverload.execute(leftInt, rightInt);
+        equationOverload.execute((double)leftInt, rightInt);
     }
 
 
