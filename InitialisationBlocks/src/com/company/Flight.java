@@ -1,6 +1,8 @@
 package com.company;
 
 public class Flight {
+
+
     private int passengers, flightNumber, seats = 150;
     private char flightClass;
     private boolean[] isSeatAvailable;
@@ -12,12 +14,21 @@ public class Flight {
         }
     }
 
+
     public Flight(int flightNumber) {
         this.flightNumber = flightNumber;
     }
 
-    public  Flight(char flightClass) {
+    public Flight(char flightClass) {
         this.flightClass = flightClass;
+    }
+
+    public char getFlightClass() {
+        return flightClass;
+    }
+
+    public int getFlightNumber() {
+        return flightNumber;
     }
 
     public void add1Passenger(Passenger passenger) {
@@ -34,5 +45,15 @@ public class Flight {
 
     public boolean hasSeating (int numPassengers) {
         return numPassengers + passengers <= seats;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Flight)) {
+            return false;
+        } else {
+            Flight other = (Flight) o;
+            return flightNumber == other.getFlightNumber() && flightClass == other.getFlightClass();
+        }
     }
 }
