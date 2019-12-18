@@ -22,5 +22,12 @@ public class Main {
         squadron[1] = new Flight(1);
         squadron[2] = new CargoFlight(2);
         squadron[3] = new Flight(3);
+
+        Object o = new CargoFlight(241);
+
+        if (o instanceof CargoFlight) {
+            CargoFlight cf = (CargoFlight) o;
+            cf.add1Passenger(new Passenger("Abe", "private"));
+        }
     }
 }
