@@ -49,7 +49,10 @@ public class Flight {
 
     @Override
     public boolean equals (Object o) {
-        if (!(o instanceof Flight)) {
+        //SHOW SUPER COMMAND
+        if (super.equals(o)) {
+            return true;
+        } else if (!(o instanceof Flight)) {
             return false;
         } else {
             Flight other = (Flight) o;

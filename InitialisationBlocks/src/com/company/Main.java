@@ -29,5 +29,11 @@ public class Main {
             CargoFlight cf = (CargoFlight) o;
             cf.add1Passenger(new Passenger("Abe", "private"));
         }
+
+
+        ///CODE TO SHOW THE USE OF SUPER COMMAND
+
+        Flight boeing = new Flight(787);
+        Flight airbus = boeing;
     }
 }
