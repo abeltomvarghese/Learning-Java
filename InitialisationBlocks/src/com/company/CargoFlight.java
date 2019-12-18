@@ -17,7 +17,8 @@ public class CargoFlight extends Flight{
         }
     }
 
-    public boolean hasCargoSpace(float size) {
+    //ADDING FINAL TO A METHOD MEANS THAT THIS METHOD CANNOT BE OVERRIDEN IN DERIVED CLASS
+    public final boolean hasCargoSpace(float size) {
         return usedCargoSpace + size <= maxCargoSpace;
     }
 
