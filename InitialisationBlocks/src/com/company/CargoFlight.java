@@ -8,7 +8,12 @@ public class CargoFlight extends Flight{
         super(flightNumber);
     }
 
-    public void add1Package(float h,float w,float d) {
+    public CargoFlight(int flightNumber, float maxCargoSpace) {
+        this(flightNumber);
+        this.maxCargoSpace = maxCargoSpace;
+    }
+
+    public void add1Package(float h, float w, float d) {
         double size = h * w * d;
         if (hasCargoSpace((float) size)) {
             usedCargoSpace += size;
