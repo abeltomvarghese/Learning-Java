@@ -11,7 +11,7 @@ public class Main {
 
         for (MathEquation eachEquation: equations) {
             eachEquation.execute();
-            System.out.println("result = " + eachEquation.getResults());
+            System.out.println("result = " + eachEquation.getResult());
         }
 
         double leftDouble = 9.0d;
@@ -22,9 +22,24 @@ public class Main {
         MathEquation equationOverload = new MathEquation('d');
 
         equationOverload.execute(leftDouble, rightDouble);
-        
+
         equationOverload.execute(leftInt, rightInt);
         equationOverload.execute((double)leftInt, rightInt);
+
+
+        System.out.println("Using Inheritance");
+
+        CalcBase[] calculators = {
+                new Adder(100.0d, 50.0d),
+                new Divider(100.0d, 50.0d),
+                new Subtracter(100.0d, 50.0d),
+                new Multiplier(100.0d, 50.0d)
+        };
+
+        for (CalcBase calc:calculators) {
+            calc.calculate();
+            System.out.println("Result: " + calc.getResult());
+        }
     }
 
 

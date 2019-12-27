@@ -4,7 +4,7 @@ public class MathEquation {
 
     private double leftVals;
     private double rightVals;
-    private double results;
+    private double result;
     private char opCodes;
 
     public MathEquation (char opcode) {
@@ -36,8 +36,8 @@ public class MathEquation {
         this.rightVals = rightVals;
     }
 
-    public double getResults() {
-        return results;
+    public double getResult() {
+        return result;
     }
 
     public void setOpCodes(char opCodes) {
@@ -47,20 +47,20 @@ public class MathEquation {
     public void execute() {
         switch (opCodes) {
             case 'a' :
-                results= leftVals + rightVals;
+                result = leftVals + rightVals;
                 break;
             case 's' :
-                results = leftVals - rightVals;
+                result = leftVals - rightVals;
                 break;
             case 'd' :
-                results = rightVals > 0 ? leftVals/rightVals: 0;
+                result = rightVals > 0 ? leftVals/rightVals: 0;
                 break;
             case 'm' :
-                results = leftVals * rightVals;
+                result = leftVals * rightVals;
                 break;
             default:
                 System.out.println("Error - invalid opCode");
-                results = 0;
+                result = 0;
         }
     }
 
@@ -74,6 +74,6 @@ public class MathEquation {
         this.leftVals = leftVal;
         this.rightVals = rightVal;
         execute();
-        results = (int) results;
+        result = (int) result;
     }
 }
