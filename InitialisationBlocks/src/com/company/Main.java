@@ -35,5 +35,8 @@ public class Main {
 
         Flight boeing = new Flight(787);
         Flight airbus = boeing;
+
+        Flight antonov = new Flight('R');
+        System.out.println(antonov);
     }
 }

@@ -59,4 +59,15 @@ public class Flight {
             return flightNumber == other.getFlightNumber() && flightClass == other.getFlightClass();
         }
     }
+
+    @Override
+    public String toString() {
+        String result;
+        if (getFlightNumber() > 0) {
+            result = "Flight number " + getFlightNumber();
+        } else {
+            result = "Flight Class " + getFlightClass();
+        }
+        return result;
+    }
 }
