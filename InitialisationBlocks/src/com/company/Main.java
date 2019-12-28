@@ -38,5 +38,20 @@ public class Main {
 
         Flight antonov = new Flight('R');
         System.out.println(antonov);
+
+
+        //USING STRINGBUILDER
+        StringBuilder stringBuilder = new StringBuilder(40);
+        String destination = "New York";
+        stringBuilder.append("I flew to ");
+        stringBuilder.append(destination);
+        stringBuilder.append(" on ");
+        stringBuilder.append(antonov);
+        int time = 9;
+        int pos = stringBuilder.length() - " on ".length() - antonov.toString().length();
+        stringBuilder.insert(pos," at ");
+        stringBuilder.insert(pos + 4, time);
+        String output = stringBuilder.toString();
+        System.out.println(output);
     }
 }
