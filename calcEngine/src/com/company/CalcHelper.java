@@ -48,6 +48,21 @@ public class CalcHelper {
 
     @Override
     public String toString() {
-        return String.join(" ",Double.toString(rightVal),"+",Double.toString(leftVal),"=",Double.toString(result));
+        String operater = null;
+        switch (command) {
+            case Subtract:
+                operater = "-";
+                break;
+            case Add:
+                operater = "+";
+                break;
+            case Multiply:
+                operater = "*";
+                break;
+            case Divide:
+                operater = "/";
+                break;
+        }
+        return String.join(" ",Double.toString(rightVal),operater,Double.toString(leftVal),"=",Double.toString(result));
     }
 }

@@ -17,7 +17,7 @@ public class Main {
         CalcHelper calcHelper = new CalcHelper();
         for (String statement: statements) {
             calcHelper.process(statement);
-            System.out.println(calcHelper.toString());
+            System.out.println(calcHelper);
         }
 
         System.out.println("**************************************** END ******************************");
