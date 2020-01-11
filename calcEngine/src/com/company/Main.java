@@ -1,13 +1,26 @@
 package com.company;
 
+import com.sun.tools.jconsole.JConsoleContext;
+
 public class Main {
 
     public static void main(String[] args) {
+
         MathEquation[] equations = new MathEquation[4];
         equations[0] = new MathEquation(100.0d, 50.0d, 'd');
         equations[1] = new MathEquation(100.0d, 50.0d, 'a');
         equations[2] = new MathEquation(100.0d, 50.0d, 's');
         equations[3] = new MathEquation(100.0d, 50.0d, 'm');
+        System.out.println("**************************************** USING ENUMS ******************************");
+        String[] statements = {"divide 100.0 50.0", "add 25.0 92.0", "subtract 225.0 12.0", "multiply 12.0 11.0"};
+
+        CalcHelper calcHelper = new CalcHelper();
+        for (String statement: statements) {
+            calcHelper.process(statement);
+            System.out.println(calcHelper.toString());
+        }
+
+        System.out.println("**************************************** END ******************************");
 
         for (MathEquation eachEquation: equations) {
             eachEquation.execute();
