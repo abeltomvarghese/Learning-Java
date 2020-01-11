@@ -3,6 +3,10 @@ package com.company;
 import org.jetbrains.annotations.NotNull;
 
 public class CalcHelper {
+    private final static char ADD_SYMBOL = '+';
+    private final static char SUBTRACT_SYMBOL = '-';
+    private final static char DIVIDE_SYMBOL = '/';
+    private final static char MULTIPLY_SYMBOL = '*';
     MathCommands command = null;
     double rightVal;
     double leftVal;
@@ -48,21 +52,21 @@ public class CalcHelper {
 
     @Override
     public String toString() {
-        String operater = null;
+        char operater = '\0';
         switch (command) {
             case Subtract:
-                operater = "-";
+                operater = SUBTRACT_SYMBOL;
                 break;
             case Add:
-                operater = "+";
+                operater = ADD_SYMBOL;
                 break;
             case Multiply:
-                operater = "*";
+                operater = MULTIPLY_SYMBOL;
                 break;
             case Divide:
-                operater = "/";
+                operater = DIVIDE_SYMBOL;
                 break;
         }
-        return String.join(" ",Double.toString(rightVal),operater,Double.toString(leftVal),"=",Double.toString(result));
+        return String.join(" ",Double.toString(rightVal),Character.toString(operater),Double.toString(leftVal),"=",Double.toString(result));
     }
 }
