@@ -67,6 +67,17 @@ public class CalcHelper {
                 operater = DIVIDE_SYMBOL;
                 break;
         }
-        return String.join(" ",Double.toString(rightVal),Character.toString(operater),Double.toString(leftVal),"=",Double.toString(result));
+        return String.join(" ",Double.toString(leftVal),Character.toString(operater),Double.toString(rightVal),"=",Double.toString(result));
+        /*
+        ALTERNATIVE METHOD
+        StringBuilder stringBuilder = new StringBuilder(20);
+        stringBuilder.append(Double.toString(leftVal));
+        stringBuilder.append(" ");
+        stringBuilder.append(Character.toString(operater));
+        stringBuilder.append(" ");
+        stringBuilder.append(Double.toString(rightVal));
+        stringBuilder.append(" ");
+        stringBuilder.append(Double.toString(result));
+         */
     }
 }
