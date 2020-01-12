@@ -12,12 +12,19 @@ public class Main {
         equations[2] = new MathEquation(100.0d, 50.0d, 's');
         equations[3] = new MathEquation(100.0d, 50.0d, 'm');
         System.out.println("**************************************** USING ENUMS ******************************");
-        String[] statements = {"divide 100.0 50.0", "add 25.0 92.0", "subtract 225.0 12.0", "multiply 12.0 11.0"};
+        String[] statements = {"divide 100.0 50.0", "add 25.0 92.0", "subtract 225.0 12.0", "multiply 12.0 11.0", "dividex 100.0 50.0", "divide 100.0 2.0 50.0", "divide test 50.0" };
 
         CalcHelper calcHelper = new CalcHelper();
         for (String statement: statements) {
-            calcHelper.process(statement);
-            System.out.println(calcHelper);
+            try {
+                calcHelper.process(statement);
+                System.out.println(calcHelper);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                if (e.getCause() != null) {
+
+                }
+            }
         }
 
         System.out.println("**************************************** END ******************************");

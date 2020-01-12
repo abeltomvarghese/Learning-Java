@@ -11,12 +11,28 @@ public class CalcHelper {
     double rightVal;
     double leftVal;
     double result;
-    public void process(@NotNull String statement) {
+    public void process(@NotNull String statement) throws InvalidStatementException {
+        command = null;
         String[] mathEquation = statement.split(" ");
+
+        if (mathEquation.length != 3) {
+            throw new InvalidStatementException("Too many arguments in String", statement);
+        }
+
         String operator = mathEquation[0];
-        leftVal = Double.parseDouble(mathEquation[1]);
-        rightVal = Double.parseDouble(mathEquation[2]);
+        try {
+            leftVal = Double.parseDouble(mathEquation[1]);
+            rightVal = Double.parseDouble(mathEquation[2]);
+        } catch (NumberFormatException e) {
+            throw new InvalidStatementException("Inputs are not numbers", String.join(" ", Double.toString(leftVal),Double.toString(rightVal)),e);
+        }
         setCommandString(operator);
+
+        if (command == null) {
+            throw new InvalidStatementException("Incorrect operation",statement);
+        }
+
+
 
         CalcBase calcBase = null;
 
@@ -48,6 +64,7 @@ public class CalcHelper {
         } else if (commandString.equalsIgnoreCase(MathCommands.Multiply.toString())) {
             command = MathCommands.Multiply;
         }
+
     }
 
     @Override
