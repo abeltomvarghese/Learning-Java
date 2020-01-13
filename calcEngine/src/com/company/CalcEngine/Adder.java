@@ -1,4 +1,4 @@
-package com.company;
+package com.company.CalcEngine;
 
 public class Adder extends CalcBase {
     public Adder(double leftVals, double rightVals) {

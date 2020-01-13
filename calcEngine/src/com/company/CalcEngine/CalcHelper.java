@@ -1,4 +1,4 @@
-package com.company;
+package com.company.CalcEngine;
 
 import org.jetbrains.annotations.NotNull;
 

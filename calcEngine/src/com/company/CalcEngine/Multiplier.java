@@ -1,4 +1,4 @@
-package com.company;
+package com.company.CalcEngine;
 
 public class Multiplier extends CalcBase{
     public Multiplier(double leftVals, double rightVals) {

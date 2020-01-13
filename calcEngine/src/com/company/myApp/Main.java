@@ -1,5 +1,6 @@
-package com.company;
+package com.company.myApp;
 
+import com.company.CalcEngine.*;
 import com.sun.tools.jconsole.JConsoleContext;
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 if (e.getCause() != null) {
-
+                    System.out.println(e.getCause().getMessage());;
                 }
             }
         }

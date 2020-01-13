@@ -1,4 +1,4 @@
-package com.company;
+package com.company.CalcEngine;
 
 public abstract class CalcBase {
     private double leftVals;
