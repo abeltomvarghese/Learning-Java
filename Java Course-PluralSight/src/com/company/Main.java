@@ -1,9 +1,12 @@
 package com.company;
 
+import com.company.Transport.Crew;
 import com.company.Transport.Flight;
 import com.company.Transport.Passenger;
+import com.company.Transport.Person;
 import com.sun.tools.jconsole.JConsoleContext;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Arrays;
@@ -11,19 +14,22 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("**** USING BUFFEREDREADER TO READ FROM FILES ****");
         ReadFiler readFiler = new ReadFiler();
         readFiler.readFile();
 
-        Passenger bob = new Passenger();
+        System.out.println("**** COMPARABLE ****");
+
+        Passenger bob = new Passenger("Bob");
         bob.setLevelDays(1,180);
 
-        Passenger jane = new Passenger();
+        Passenger jane = new Passenger("Jane");
         jane.setLevelDays(1,90);
 
-        Passenger steve = new Passenger();
+        Passenger steve = new Passenger("Steve");
         steve.setLevelDays(2,180);
 
-        Passenger lisa = new Passenger();
+        Passenger lisa = new Passenger("Lisa");
         lisa.setLevelDays(3,730);
 
         Passenger[] passengers = {bob, jane, steve, lisa};
@@ -53,6 +59,16 @@ public class Main {
             System.out.println(plane.getInfo());
         }
 
+        System.out.println("**** INTERFACES ****");
+        Crew jack = new Crew("Jack",10);
+        Crew sulley = new Crew("Sulley",30);
+        lax.addPassenger(bob);
+        lax.addPassenger(steve);
+        lax.addCrewMember(jack);
+        lax.addCrewMember(sulley);
+        for (Person p:lax) {
+            System.out.println(p.getName());
+        }
     }
 
 

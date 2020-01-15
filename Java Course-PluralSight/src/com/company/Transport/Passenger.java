@@ -1,9 +1,15 @@
 package com.company.Transport;
 
-public class Passenger implements Comparable{
+public class Passenger extends Person implements Comparable{
 
     private int memberLevel;
     private int memberDays;
+    String name;
+
+    public Passenger(String name) {
+        super(name);
+
+    }
 
     @Override
     public int compareTo(Object o) {

@@ -1,7 +1,19 @@
 package com.company.Transport;
 
-public class Flight implements Comparable<Flight> {
+import java.util.Iterator;
+
+public class Flight implements Comparable<Flight>, Iterable<Person> {
     private int flightTime;
+    private Passenger[] roster;
+    private Crew[] crews;
+    private int pIndex = 0;
+    private int cIndex = 0;
+
+    {
+        crews = new Crew[2];
+        roster = new Passenger[2];
+    }
+
 
     @Override
     public int compareTo(Flight f) {
@@ -16,4 +28,26 @@ public class Flight implements Comparable<Flight> {
     public void setFlightTime(int flightTime) {
         this.flightTime = flightTime;
     }
+
+    @Override
+    public Iterator<Person> iterator() {
+        return new FlightIterator(crews,roster);
+    }
+
+    public void addCrewMember(Crew member) {
+        if (cIndex < crews.length) {
+            crews[cIndex] = member;
+        }
+        cIndex++;
+    }
+
+    public void addPassenger(Passenger member) {
+        if (pIndex < roster.length) {
+            roster[pIndex] = member;
+        }
+        pIndex++;
+    }
+
+
+
 }
