@@ -61,6 +61,16 @@ public class Main {
             calc.calculate();
             System.out.println("Result: " + calc.getResult());
         }
+
+        System.out.println("*** USING INTERFACES ***");
+        DynamicHelper helper = new DynamicHelper(new iMathProcessing[] {new Adder(), new Power()});
+
+        String[] questions = {"add 1.0 2.0", "power 5.0 2.0"};
+
+        for (String statement : questions) {
+            String output = helper.process(statement);
+            System.out.println(output);
+        }
     }
 
 

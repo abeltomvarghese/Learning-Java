@@ -34,5 +34,7 @@ public abstract class CalcBase {
         this.rightVals = rightVals;
     }
 
+    public CalcBase(){}
+
     public abstract void calculate();
 }
