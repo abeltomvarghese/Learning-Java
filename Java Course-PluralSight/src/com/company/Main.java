@@ -11,6 +11,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Arrays;
 
+///TO STOP USING Flight class to access its static methods, we can use the static import
+import static com.company.Transport.Flight.addPassengers;
+import static com.company.Transport.Flight.getAllPassengers;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -69,6 +74,9 @@ public class Main {
         for (Person p:lax) {
             System.out.println(p.getName());
         }
+
+        addPassengers(20);
+        System.out.println(getAllPassengers());
     }
 
 

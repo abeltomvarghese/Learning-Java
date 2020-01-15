@@ -8,10 +8,14 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     private Crew[] crews;
     private int pIndex = 0;
     private int cIndex = 0;
+    private static int allPassengers;
+
+
 
     {
         crews = new Crew[2];
         roster = new Passenger[2];
+        allPassengers = 0;
     }
 
 
@@ -48,6 +52,12 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
         pIndex++;
     }
 
+    public static int getAllPassengers() {
+        return allPassengers;
+    }
 
+    public static void addPassengers(int i) {
+        allPassengers+= i;
+    }
 
 }
