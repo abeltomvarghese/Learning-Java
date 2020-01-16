@@ -1,10 +1,14 @@
 package com.company;
 
 import com.company.Transport.Crew;
+import com.company.Transport.CrewManager;
+import com.company.Transport.CrewMember;
 import com.company.Transport.Flight;
+import com.company.Transport.FlightCrewJob;
 import com.company.Transport.Passenger;
 import com.company.Transport.Person;
 import com.sun.tools.jconsole.JConsoleContext;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -77,6 +81,14 @@ public class Main {
 
         addPassengers(20);
         System.out.println(getAllPassengers());
+
+
+        System.out.println("*** USING STATIC INITIALISATION BLOCKS ***");
+        CrewMember a = CrewManager.findAvailable(FlightCrewJob.AirMarshal);
+        System.out.println(String.join(" ", a.toString(),"is available"));
+
+        CrewMember b = CrewManager.findAvailable(FlightCrewJob.AirMarshal);
+        System.out.println(String.join(" ", b.toString(),"is available"));
     }
 
 
