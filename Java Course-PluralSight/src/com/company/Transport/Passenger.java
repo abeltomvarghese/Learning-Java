@@ -41,4 +41,21 @@ public class Passenger extends Person implements Comparable{
     public String getInfo() {
         return String.join(" ", Integer.toString(this.memberLevel),":",Integer.toString(this.memberDays));
     }
+
+
+    public static class RewardProgram {
+        private int memberLevel;
+        private int memberDays;
+        public int getLevel() {return memberLevel;}
+        public int getDays() {return memberDays;}
+        public void setLevel(int level) {this.memberLevel = level;}
+        public void setDays(int days) {this.memberDays = days;}
+    }
+
+    private RewardProgram rewardProgram = new RewardProgram();
+
+    public RewardProgram getRewardProgram() {
+        return rewardProgram;
+    }
+
 }

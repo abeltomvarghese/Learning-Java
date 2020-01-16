@@ -89,6 +89,20 @@ public class Main {
 
         CrewMember b = CrewManager.findAvailable(FlightCrewJob.AirMarshal);
         System.out.println(String.join(" ", b.toString(),"is available"));
+
+
+        System.out.println("*** USING NESTED CLASSES ***");
+
+        Passenger Abe = new Passenger("Abe Lincoln");
+        Abe.getRewardProgram().setDays(180);
+        Abe.getRewardProgram().setLevel(2);
+
+        Passenger.RewardProgram platinum = new Passenger.RewardProgram();
+        platinum.setLevel(3);
+
+        if (Abe.getRewardProgram().getLevel() == platinum.getLevel()) {
+            System.out.println(Abe.getName() + " is a platinum member!");
+        }
     }
 
 
