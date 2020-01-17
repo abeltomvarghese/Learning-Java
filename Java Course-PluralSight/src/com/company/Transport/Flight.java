@@ -35,7 +35,7 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
 
     @Override
     public Iterator<Person> iterator() {
-        return new FlightIterator(crews,roster);
+        return new FlightIterator();
     }
 
     public void addCrewMember(Crew member) {
@@ -59,5 +59,26 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     public static void addPassengers(int i) {
         allPassengers+= i;
     }
+
+
+    private class FlightIterator implements Iterator<Person> {
+        private int index = 0;
+
+
+        @Override
+        public boolean hasNext() {
+            return index < (crews.length + roster.length);
+        }
+
+        @Override
+        public Person next() {
+
+            Person p = (index < crews.length) ? crews[index] : roster[index - crews.length];
+            index++;
+            return p;
+        }
+    }
+
+
 
 }
