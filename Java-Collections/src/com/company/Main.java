@@ -22,8 +22,14 @@ public class Main {
 
         while (productIterator.hasNext()) {
             Product product = productIterator.next();
-            System.out.println(product);
+            if (product.getWeight() > 20) {
+                System.out.println(product);
+            } else {
+                productIterator.remove();
+            }
+
         }
+        System.out.println(products);
 
         ///ALTERNATIVE METHOD
 
@@ -31,8 +37,11 @@ public class Main {
             System.out.println(product);
         }
 
+        System.out.println(products.size());
+        System.out.println(products.isEmpty());
 
-
+        System.out.println(products.contains(window));
+        System.out.println(products.contains(door));
 
     }
 }
