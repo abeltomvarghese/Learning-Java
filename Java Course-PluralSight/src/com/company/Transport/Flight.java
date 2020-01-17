@@ -11,7 +11,6 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     private static int allPassengers;
 
 
-
     {
         crews = new Crew[2];
         roster = new Passenger[2];
@@ -33,10 +32,6 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
         this.flightTime = flightTime;
     }
 
-    @Override
-    public Iterator<Person> iterator() {
-        return new FlightIterator();
-    }
 
     public void addCrewMember(Crew member) {
         if (cIndex < crews.length) {
@@ -57,10 +52,32 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
     }
 
     public static void addPassengers(int i) {
-        allPassengers+= i;
+        allPassengers += i;
     }
 
+    @Override
+    public Iterator<Person> iterator() {
+        return new Iterator<Person>() {
+            int index = 0;
 
+            @Override
+            public boolean hasNext() {
+                return index < (crews.length + roster.length);
+            }
+
+            @Override
+            public Person next() {
+                Person p = (index < crews.length) ? crews[index] : roster[index - crews.length];
+                index++;
+
+                return p;
+            }
+        };
+
+
+    }
+
+    /*
     private class FlightIterator implements Iterator<Person> {
         private int index = 0;
 
@@ -78,7 +95,7 @@ public class Flight implements Comparable<Flight>, Iterable<Person> {
             return p;
         }
     }
-
+    */
 
 
 }
