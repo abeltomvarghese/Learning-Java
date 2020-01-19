@@ -1,5 +1,6 @@
 package com.company;
 import com.product.Product;
+import com.product.Shipment;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,6 +43,36 @@ public class Main {
 
         System.out.println(products.contains(window));
         System.out.println(products.contains(door));
+
+        Collection<Product> extraStock = new ArrayList<>();
+        extraStock.add(window);
+        extraStock.add(door);
+        products.removeAll(extraStock);
+
+        System.out.println(products.toString());
+
+
+        System.out.println("*** USING LISTS ***");
+
+        Product BonsaiTree = new Product("Bonsai Tree", 23);
+        Product ChristmasTree = new Product("Christmas Tree", 20);
+        Product oakTree = new Product("Oak Tree", 50);
+        Shipment toChina = new Shipment();
+        toChina.add(BonsaiTree);
+        toChina.add(ChristmasTree);
+        toChina.add(oakTree);
+
+        for (Product product : toChina) {
+            System.out.println(product.toString());
+        }
+
+        toChina.prepare();
+
+        for (Product product : toChina) {
+            System.out.println(product.toString());
+        }
+
+        toChina.getVan();
 
     }
 }

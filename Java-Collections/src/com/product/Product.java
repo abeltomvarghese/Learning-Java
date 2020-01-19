@@ -1,5 +1,5 @@
 package com.product;
-public class Product {
+public class Product implements Comparable<Product>{
     private String name;
     private int weight;
 
@@ -28,4 +28,11 @@ public class Product {
     public String toString() {
         return String.join(" ",name,":",Integer.toString(weight));
     }
+
+    @Override
+    public int compareTo(Product o) {
+        return this.getWeight() < o.getWeight() ? -1 : this.getWeight() > o.getWeight() ? 1 : 0;
+    }
+
+
 }
