@@ -1,7 +1,8 @@
 package com.company;
 import com.product.Product;
 import com.product.Shipment;
-
+import com.product.Supplier;
+import com.product.ProductCatalog;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -74,5 +75,16 @@ public class Main {
 
         toChina.getVan();
 
+        System.out.println("*** USING SETS ***");
+
+        Supplier BobsHardwares = new Supplier("Bob's Hardware Shop");
+        BobsHardwares.addItem(BonsaiTree);
+
+        ProductCatalog springCatalog = new ProductCatalog();
+        springCatalog.isSuppliedBy(BobsHardwares);
+
+        for (Product p : springCatalog) {
+            System.out.println(p.getName());
+        }
     }
 }

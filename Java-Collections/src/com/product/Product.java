@@ -32,6 +32,7 @@ public class Product implements Comparable<Product>{
     @Override
     public int compareTo(Product o) {
         return this.getWeight() < o.getWeight() ? -1 : this.getWeight() > o.getWeight() ? 1 : 0;
+        
     }
 
 
