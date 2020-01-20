@@ -6,6 +6,7 @@ import com.product.ProductCatalog;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Set;
 
 public class Main {
 
@@ -85,6 +86,19 @@ public class Main {
         springCatalog.isSuppliedBy(BobsHardwares);
 
         for (Product p : springCatalog) {
+            System.out.println(p.getName());
+        }
+
+        Set<Product> lightProducts = springCatalog.lightVanProducts();
+        Set<Product> heavyProducts = springCatalog.HeavyVanProducts();
+
+        System.out.println("*** USING SORTED SETS WITH COMPARATORS & SUBSETS ***");
+        System.out.println("Light Products");
+        for (Product p : lightProducts) {
+            System.out.println(p.getName());
+        }
+        System.out.println("Heavy Products");
+        for (Product p : heavyProducts) {
             System.out.println(p.getName());
         }
     }

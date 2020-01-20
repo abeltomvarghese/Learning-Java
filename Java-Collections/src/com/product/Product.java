@@ -1,11 +1,16 @@
 package com.product;
 
+import java.util.Comparator;
 import java.util.Objects;
+
+import static java.util.Comparator.comparing;
 
 public class Product implements Comparable<Product>{
     private String name;
     private int weight;
 
+    public static final Comparator<Product> BY_NAME = comparing(Product::getName);
+    public static final Comparator<Product> BY_WEIGHT = comparing(Product::getWeight);
     public Product(String name, int weight) {
         this.name = name;
         this.weight = weight;
