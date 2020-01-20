@@ -79,6 +79,7 @@ public class Main {
 
         Supplier BobsHardwares = new Supplier("Bob's Hardware Shop");
         BobsHardwares.addItem(BonsaiTree);
+        BobsHardwares.addItem(new Product("Bonsai Tree", 23));
 
         ProductCatalog springCatalog = new ProductCatalog();
         springCatalog.isSuppliedBy(BobsHardwares);
