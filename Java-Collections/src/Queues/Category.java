@@ -1,8 +1,8 @@
 package Queues;
 
 public enum Category {
-    PHONE,
+    PRINTER,
     TABLET,
     LAPTOP,
-    PRINTER
+    PHONE
 }

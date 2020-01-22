@@ -1,12 +1,20 @@
 package Queues;
 
 import java.util.ArrayDeque;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.function.Predicate;
 
-public class HelpDesk {
+public class PriorityHelpDesk {
 
-    private final Queue<Enquiry> enquiries = new ArrayDeque<>();
+    private static final Comparator<Enquiry> BY_CATEGORY = new Comparator<Enquiry>() {
+        @Override
+        public int compare(Enquiry o1, Enquiry o2) {
+            return o1.getCategory().compareTo(o2.getCategory());
+        }
+    };
+    private final Queue<Enquiry> enquiries = new PriorityQueue<>(BY_CATEGORY);
 
     public void enquire(final Customer customer, final Category category) {
         enquiries.offer(new Enquiry(customer,category));
@@ -54,17 +62,16 @@ public class HelpDesk {
     }
 
     public static void main(String[] args) {
-        HelpDesk helpDesk = new HelpDesk();
+        PriorityHelpDesk helpDesk = new PriorityHelpDesk();
         helpDesk.enquire(Customer.JACK, Category.PHONE);
         helpDesk.enquire(Customer.HARRY, Category.PRINTER);
         helpDesk.enquire(Customer.JILL, Category.TABLET);
-        //helpDesk.processAllEnquiries();
+        helpDesk.processAllEnquiries();
         System.out.println(helpDesk.enquiries.isEmpty());
 
-        helpDesk.processPrinterEnquiry();
-        helpDesk.processGeneralEnquiry();
-        helpDesk.processPrinterEnquiry();
-        helpDesk.processPrinterEnquiry();
+
+
+
 
 
 
