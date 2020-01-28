@@ -31,9 +31,23 @@ public class Main {
         }
         System.out.println(products);
 
+        Product result = products.getOrDefault(10, new Product("Whatever the customer wants",-1));
+        System.out.println(result);
+        System.out.println(products.get(10));
 
 
+        Product replaceResult = products.replace(2,new Product("Night Stand",15));
+        System.out.println(replaceResult);
+        System.out.println(products);
 
+        products.replaceAll((id, oldProduct) -> new Product(oldProduct.getName(), oldProduct.getWeight() + 10));
+        System.out.println(products);
 
+        products.computeIfAbsent(24, (id) -> new Product("Custom Product",100));
+        System.out.println(products);
+
+        products.forEach((key, value) -> {
+            System.out.println(key + "-> " + value);
+        });
     }
 }
