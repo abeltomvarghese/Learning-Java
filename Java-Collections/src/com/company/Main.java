@@ -3,6 +3,8 @@ import com.product.Product;
 import com.product.Shipment;
 import com.product.Supplier;
 import com.product.ProductCatalog;
+import com.StacksDeques.Calculator;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -101,5 +103,9 @@ public class Main {
         for (Product p : heavyProducts) {
             System.out.println(p.getName());
         }
+
+        Calculator calculator = new Calculator();
+        calculator.evaluate("2 + 3");
+
     }
 }

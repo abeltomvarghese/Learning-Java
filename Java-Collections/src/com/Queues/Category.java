@@ -1,4 +1,4 @@
-package Queues;
+package com.Queues;
 
 public enum Category {
     PRINTER,

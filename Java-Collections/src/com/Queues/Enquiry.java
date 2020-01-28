@@ -1,4 +1,4 @@
-package Queues;
+package com.Queues;
 
 public class Enquiry {
     private final Customer customer;

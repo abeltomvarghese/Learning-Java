@@ -1,4 +1,4 @@
-package Queues;
+package com.Queues;
 
 public class Customer {
     public static final Customer JACK = new Customer("Jack Horse");
