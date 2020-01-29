@@ -26,6 +26,8 @@ public class ShoppingBasket {
     public static void main(String[] args) {
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         shoppingBasket.add(ProductList.door);
-        shoppingBasket.getItems().add(ProductList.sofa);
+        System.out.println(shoppingBasket);
+        shoppingBasket.add(ProductList.sofa);
+        System.out.println(shoppingBasket);
     }
 }

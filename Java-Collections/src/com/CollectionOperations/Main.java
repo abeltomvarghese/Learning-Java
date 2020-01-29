@@ -37,5 +37,6 @@ public class Main {
         products.sort(Product.BY_WEIGHT);
         System.out.println(products);
 
+
     }
 }
