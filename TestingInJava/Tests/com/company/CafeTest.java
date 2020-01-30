@@ -24,4 +24,28 @@ class CafeTest {
         //check how many coffee beans
         Assertions.assertEquals(7, testCoffee.getBeans());
     }
+
+    @Test
+    public void brewingEspressoConsumesBeans() {
+        Cafe testCafe = new Cafe();
+        testCafe.restockBeans(7);
+
+        Coffee testCoffee = testCafe.brew(CoffeeType.Espresso);
+
+        Assertions.assertEquals(0, testCafe.getBeansInStock());
+    }
+
+    @Test
+    public void lattesRequiresMilk() {
+        Cafe testCafe = new Cafe();
+        testCafe.restockBeans(7);
+
+
+
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            Coffee coffee = testCafe.brew(CoffeeType.Latte);
+        });
+
+
+    }
 }

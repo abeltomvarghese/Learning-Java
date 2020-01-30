@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TestingInJava" target="1.6" />
+      <module name="TestingInJava" target="12" />
     </bytecodeTargetLevel>
   </component>
 </project>
