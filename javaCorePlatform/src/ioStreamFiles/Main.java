@@ -2,15 +2,22 @@ package ioStreamFiles;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -48,9 +55,19 @@ public class Main {
             System.out.println(line);
         }
 
+        try (FileSystem fs = openZip(Paths.get("myZip.zip"))) {
 
+        } catch (Exception e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getCause()+ " - " + e.getMessage());
+        }
+    }
 
+    public static FileSystem openZip(Path zipPath) throws IOException, URISyntaxException {
+        Map<String, String> providerProps = new HashMap<>();
+        providerProps.put("create","true");
+        URI fileURI = new URI("jar:file", zipPath.toUri().getPath(), null);
+        FileSystem fs = FileSystems.newFileSystem(fileURI, providerProps);
 
-
+        return fs;
     }
 }
