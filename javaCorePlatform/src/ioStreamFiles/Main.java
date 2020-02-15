@@ -10,11 +10,13 @@ import java.io.Reader;
 import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.CopyOption;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +58,7 @@ public class Main {
         }
 
         try (FileSystem fs = openZip(Paths.get("myZip.zip"))) {
-
+            copyToZip(fs);
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getCause()+ " - " + e.getMessage());
         }
@@ -70,4 +72,11 @@ public class Main {
 
         return fs;
     }
+
+    public static void copyToZip(FileSystem zipFS) throws Exception {
+        Path sourceFile = Paths.get("inputFile2.txt");
+        Path destFile = zipFS.getPath("/copiedFile.txt");
+        Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+    }
+
 }
