@@ -10,13 +10,16 @@ import java.io.Reader;
 import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.CopyOption;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +62,7 @@ public class Main {
 
         try (FileSystem fs = openZip(Paths.get("myZip.zip"))) {
             copyToZip(fs);
+            writeToZip(fs);
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + " - " + e.getCause()+ " - " + e.getMessage());
         }
@@ -77,6 +81,16 @@ public class Main {
         Path sourceFile = Paths.get("inputFile2.txt");
         Path destFile = zipFS.getPath("/copiedFile.txt");
         Files.copy(sourceFile, destFile, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public static void writeToZip(FileSystem zipFS) throws Exception {
+        String[] data = {"The name is ", "Bond,", "James Bond", "License to stun"};
+        try(BufferedWriter bw = Files.newBufferedWriter(zipFS.getPath("/writtenFile.txt"), StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+            for (String s : data) {
+                bw.write(s);
+                bw.newLine();
+            }
+        }
     }
 
 }
