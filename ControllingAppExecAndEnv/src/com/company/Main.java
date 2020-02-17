@@ -1,10 +1,12 @@
 package com.company;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Properties;
 
 public class Main {
 
@@ -20,6 +22,15 @@ public class Main {
             return;
         }
 	    showFileLines(filename);
+
+        Properties props = new Properties();
+        props.setProperty("name","Bruce Wayne");
+        props.setProperty("vehicle","BatMobile 2.0");
+
+        try (BufferedWriter br = Files.newBufferedWriter(Paths.get("superHero.properties"), StandardOpenOption.APPEND)) {
+            props.store(br, "Gotham Portfolio");
+        } catch (Exception e) {e.printStackTrace();}
+
     }
 
     public static void showFileLines(String filename) {
