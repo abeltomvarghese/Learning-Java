@@ -1,0 +1,394 @@
+===================================================================================================================================
+														**** JAVA NOTES ****
+===================================================================================================================================
+
+
+**** STRING FORMATTING AND REGULAR EXPRESSIONS ****
+
+** StringJoiner Class **
+
+StringJoiner sj = new StringJoiner(", ");
+sj.add("alpha");
+sj.add("theta");
+sj.add("gamma");
+String result = sj.toString(); 
+
+result being: alpha, theta, gamma
+
+ANOTHER EXAMPLE:
+StringJoiner sj = new StringJoiner(", ", "{","}");
+sj.add("hello");
+sj.add("central");
+sj.add("perk");
+String result = sj.toString();
+
+result being {hello, central, perk}
+
+
+ANOTHER EXAMPLE: 
+StringJoiner sj = new StringJoiner("], [","[", "]");
+sj.add("hello");
+sj.add("central");
+sj.add("perk");
+String result = sj.toString();
+
+result being [hello], [central], [perk] 
+
+> handling edge cases are much easier to do with StringJoiner
+> if nothing has been added to the StringJoiner, it will just return empty with the props you specified
+
+StringJoiner sj = new StringJoiner(", ", "{","}");
+String result = sj.toString();
+
+result being {}
+
+You can also set an empty value
+
+StringJoiner sj = new StringJoiner("], [","[", "]");
+sj.setEmptyValue("EMPTY");
+String result = sj.toString();
+
+result being EMPTY
+
+
+** Constructing Strings with Format Specifiers ** 
+
+> methods used most commonly:
+	String.format
+	System.out.printf
+	Formatter.format
+
+String s1 = String.format("My kids are %d, %d and %d years old", firstAge, SecondAge, thirdAge);
+result being My kids are 10, 9 and 6 years old. 
+
+String s1 = String.format("The average age between each is %.1f years", average);
+	> the %.1f specifies how many decimal points you want. 
+	> the f specifies it is a floating point number - these can handle numbers with decimal points. 
+	
+result being The average age between each is 3.4 years
+
+
+> common format options 
+	> d for integer 
+	> o for octal 
+	> x for hex 
+	> f for floating point 
+	> e for scientific notation as in 1.2300+e2
+	> s for string 
+
+
+useful format flag - the separator 
+
+String s1 = String.format("%,d", 1234567);
+	> the separator flag here being comma separates the output 
+	
+the result being 1,234,567
+
+
+> aligning numbers
+
+String sample = String.format("% d", 123);
+String sample2 = String.format("% d", -123);
+
+the result being:
+ 123
+-123
+
+
+** Writing Formatted Content to a Stream ** 
+
+public void doWrite(int s1, int s2) throws IOException {
+	BufferedWriter writer = Files.newBufferedWriter(Paths.get("file.txt"));
+	try (Formatter f = new Formatter(writer)) {
+		f.format("the ages are %d & %d of the cars", s1, s2);
+		f.format("The car is only %d years old", s1);
+	}
+}
+
+** Regular expressions with Strings **
+
+String s1 = "Apple, Apple & orange please" 
+String s2 = s1.replaceAll("ple\\b","ricot")
+System.out.println(s2);
+
+	>result being Apricot, Apricot & orange please
+	> \\b indicates to break so only select when there is a break afterwards
+
+String s1 = "Apple, Apple & orange please"
+String[] parts = s1.split("\\b");
+for (String thePart:parts) {
+	if (thePart.matches("\\w+")) {
+		System.out.println(thePart);
+	}
+}
+	
+	> split the string where there are breaks 
+	> if the string within the array contains word characters (+ indicates 1 or more word characters) then print the string out. 
+
+
+** Dedicated Regular Expression classes **
+
+String s1 = "Apple, Apple & orange please"
+Pattern pattern = pattern.compile("\\w+");
+Matcher matcher = pattern.matcher(s1);
+while (matcher.find()) {
+	System.out.println(matcher.group());
+}
+
+	> setting the pattern to find a particular sequence 
+	> matcher.find() looks through the string and matcher.group() returns the entire word. 
+
+
+
+**** JAVA COLLECTIONS ****
+
+** Collection Interface ** 
+
+ArrayList<String> list1 = new ArrayList<>();
+list1.add("hello");
+list1.add("world");
+
+LinkedList<String> list2 = new LinkedList<>();
+list2.add("it's");
+list2.add("a");
+list2.add("wonderful");
+list2.add("day");
+list1.addAll(list2);
+
+	> addAll method allows you to copy all of the items in 1 list to another. 
+	
+
+common equality based methods
+	> list1.contains("hello"); - returns true if contains element
+	> list1.containsAll(list2) - returns true if contains all members of another collection
+	> list1.remove("hello") - remove element
+	> list1.removeall() - removes all elements contained in another collection
+	> list1.retainAll(list2) - removes all elements from list1 not contained within list2
+
+
+** lambda expressions in collections ** 
+
+> forEach method 
+
+ArrayList<String> list1 = new ArrayList<>();
+list1.add("hello");
+list1.add("world");
+
+list1.forEach(m -> System.out.println(m))
+
+> removeIf method 
+
+list1.removeIf(m -> m.equals("hello"));
+
+
+** Converting between collections & arrays **
+
+> getting an array 
+
+ArrayList<String> list1 = new ArrayList<>();
+list1.add("hello");
+list1.add("world");
+
+String[] myArray = list1.toArray(new String[0]);
+
+
+> getting a list 
+
+Collection<String> lists = Arrays.asList(list1);
+
+	> so you can now call this with all the collection methods 
+
+lists.forEach(c -> System.out.println(c));
+
+
+> Collection Interfaces (Theory) 
+	> Collection - Basic collection operations 
+	> List - Collection that maintains a particular order 
+	> Queue - Collection with the concept of order and specific "head" element 
+	> Set - Collection that contains no duplicate values 
+	> SortedSet - A set who members are sorted
+
+> Collection implementations 
+	> ArrayList - A list backed by a resizable array. Efficient random access but inefficient random inserts 
+	> LinkedList - A list and Queue backed by a doubly-linked list. Efficient random insert but inefficient random access. 
+	> HashSet - A set implemented by a hashtable. Efficient general purpose usage at any size. 
+	> TreeSet - A SortedSet implemented as a balanced binary tree. Members accessible in order but less efficient to modify and search than a hashset. 
+
+
+** Sorting using Comparable interfaces & Comparators ** 
+
+> Using the comparable interface
+
+public class MyClass implements Comparable<MyClass> {
+	
+	String label, value; 
+	
+	public int compareTo(Object o){
+		return value.compareToIgnoreCase(o.value); 
+	}
+} 
+
+	> Now you can use this with a collection interface that uses sorting. 
+
+TreeSet<MyClass> tree = new TreeSet<>();
+tree.add(new MyClass("1","hello"));
+tree.add(new MyClass("2","world"));
+tree.add(new MyClass("3","Abel"));
+tree.add(new MyClass("4","here"));
+
+tree.forEach(t -> System.out.println(t));
+
+the result of this would be a sorted sequence: Abel hello here world
+
+> Using a comparator 
+
+public class MyComparator implements Comparator<MyClass> {
+
+	public int compare(MyClass x, MyClass y) {
+		return x.getValue().compareToIgnoreCase(y.getValue());
+	}
+}
+
+	> the above class would be used as a comparator when using a collections implementation that has sorting.
+	For example: 
+	
+TreeSet<MyClass> tree = new TreeSet<>(new MyComparator());
+tree.add(new MyClass("1","hello"));
+tree.add(new MyClass("2","world"));
+tree.add(new MyClass("3","Abel"));
+tree.add(new MyClass("4","here"));
+
+
+** Map Collections ** 
+
+Map types: 
+	> Map: Basic map operations 
+	> SortedMap: Map whose keys are sorted 
+
+Map Implementations: 
+	> HashMap: Efficient general purpose Map implementation 
+	> TreeMap: SortedMap implemented as a self-balancing tree supports comparable and comparator sorting. 
+	
+Common Map Methods: 
+	> put: add key and value 
+	> putIfAbsent: add key and value if key not contained or value null 
+	> get: return value for key, if key not found return null 
+	> getOrDefault: return value for key, if key not found return the provided default value 
+	> values: Return a Collection of the contained values
+	> keySet: Return a set of the contained keys 
+	> forEach: Perform action for each entry 
+	> replaceAll: Perform action for each entry replacing the each key's value with the action's result 
+
+Map<int, String> map = new HashMap<>();
+map.put(2009, "BMW");
+map.put(2010, "Mercedes");
+map.put(2011, "Audi");
+map.put(2012, "Rolls Royce");
+map.put(2013, "Bentley");
+map.put(2014, "Jaguar");
+map.put(2015, "Range Rover");
+
+String s1 = map.getOrDefault(2015, "Large Vehicle")
+
+map.forEach((k,v) -> System.out.println(k + " | " + v));
+
+map.replaceAll((k,v) -> v.toUpperCase());
+
+
+Common SortedMap Methods: 
+	> firstKey: return first key
+	> lastKey: return last key
+	> headMap: return a map for all keys that are less than the specified key - it is exclusive of the key passed
+	> tailMap: return a Map for all keys that are greater than or equal to the specified key - it includes the key passed as parameter
+	> subMap: return a map for all keys that are greater than or equal to the starting key and less than the ending key 
+
+
+SortedMap<Integer, String> map = new TreeMap<>(new MyComparator());
+map.put(2009, "BMW");
+map.put(2010, "Mercedes");
+map.put(2011, "Audi");
+map.put(2012, "Rolls Royce");
+map.put(2013, "Bentley");
+map.put(2014, "Jaguar");
+map.put(2015, "Range Rover");
+
+map.forEach((k,v) -> System.out.println(k + " | " + v));
+
+implemented the MyComparator class as follows: 
+public class MyComparator implements Comparator<Integer> {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o1.compareTo(o2);
+    }
+}
+
+
+
+
+> Using HeadMap
+
+SortedMap<Integer, String> hMap = map.headMap(2012);
+hMap.forEach((k,v) -> System.out.println(k + " | " + v)); 
+
+> Using TailMap
+
+SortedMap<Integer, String> tMap = map.tailMap(2012);
+tMap.forEach((k,v) -> System.out.println(k + " | " + v));
+
+
+
+
+**** CONTROLLING APP EXECUTION AND ENVIRONMENT ****
+
+** Command-line arguments ** 
+
+package com.company.cmdline;
+class Main {
+
+	public static void main(String[] args) {
+
+		if (args.length < 1) {
+			System.out.println("No arguments provided");
+		} else {
+			for(String word : args) {
+				System.out.println(word);
+			}
+		}
+	}
+}
+
+
+sample program: 
+
+public class Main {
+
+    public static void main(String[] args) {
+	    if (args.length == 0) {
+	        showUsage();
+	        return;
+        }
+    }
+
+    public static void showFileLines(String filename) {
+        System.out.println();
+
+        try(BufferedReader br = Files.newBufferedReader(Paths.get(filename))) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getClass().getSimpleName() + " - " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void showUsage() {
+        System.out.println();
+        System.out.println("Please provide the filename to process on the command line");
+    }
+
+}
+
+
+
