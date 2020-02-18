@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>second Changes</comment>
+<entry key="farewellMessage">what is sleep?</entry>
+<entry key="isFirstRun">N</entry>
+<entry key="welcomeMessage">different now</entry>
+</properties>
