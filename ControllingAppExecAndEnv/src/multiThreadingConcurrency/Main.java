@@ -67,10 +67,11 @@ public class Main {
             results[x] = es.submit(adderSecond);
         }
 
+        int value = 0;
         for (Future<Integer> result : results) {
 
             try {
-                int value = result.get();	//blocks each submit job until return value is available
+                value += result.get();	//blocks each submit job until return value is available
                 System.out.println(value);
             } catch(ExecutionException ex) {
                 Throwable adderEx = ex.getCause();
@@ -81,6 +82,7 @@ public class Main {
 
         }
 
+        System.out.println("Total: " + value);
         es.shutdown();
     }
 
