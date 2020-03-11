@@ -25,6 +25,7 @@ public class Main {
                 .map(CompletableFuture::join)
                 .forEach(System.out::println);
 
+        
     }
 
     public static CompletableFuture<String> validateLink(String link) {
